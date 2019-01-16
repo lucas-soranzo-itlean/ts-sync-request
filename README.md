@@ -3,6 +3,8 @@
 
 ## Make synchronous http calls in TypeScript
 
+The package exports a **SyncRequestService** class which has methods to make synchronous GET, POST calls.
+
 [**sync-request library on npm**](https://www.npmjs.com/package/sync-request)
 
 [**ts-sync-request library on npm**](https://www.npmjs.com/package/ts-sync-request)
@@ -29,8 +31,19 @@ class Response
 import { SyncRequestService } from 'ts-sync-request/dist';
 ```
 
+**GET**:
+
 ```
-     let url = "http://localhost:59039/api/Movies/validateEmail";
+     let email = "jdoe@xyz.com";
+     let url = "http://localhost:59039/api/Movies/validateEmail/" + email;
+
+     let response = new SyncRequestService().get<Response>(url);
+```
+
+**POST**:
+
+```
+     let url = "http://localhost:59039/api/Movies/validateEmailPost";
      let request = new Request();
      request.Email = "jdoe@xyz.com";
 
