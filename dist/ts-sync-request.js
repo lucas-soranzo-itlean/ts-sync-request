@@ -10,7 +10,7 @@ var SyncRequestService = /** @class */ (function () {
     SyncRequestService.prototype.get = function (url) {
         var res = sync_request_1.default('GET', url);
         var body = res.getBody('utf8');
-        var o = JSON.parse(JSON.stringify(body));
+        var o = JSON.parse(body);
         return o;
     };
     SyncRequestService.prototype.post = function (url, req) {
@@ -19,7 +19,7 @@ var SyncRequestService = /** @class */ (function () {
         };
         var res = sync_request_1.default('POST', url, options);
         var body = res.getBody('utf8');
-        var o = JSON.parse(JSON.stringify(body));
+        var o = JSON.parse(body);
         return o;
     };
     return SyncRequestService;

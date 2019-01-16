@@ -19,7 +19,7 @@ class Request
 
 class Response
 {
-    IsValid: boolean;
+    isValid: boolean;
 }
 ```
 

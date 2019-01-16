@@ -7,7 +7,7 @@ export class SyncRequestService
 
         var body = res.getBody('utf8');
 
-        var o = JSON.parse(JSON.stringify(body));
+        var o = JSON.parse(body);
 
         return o;        
     }
@@ -21,7 +21,7 @@ export class SyncRequestService
 
         var body = res.getBody('utf8');
 
-        var o = JSON.parse(JSON.stringify(body));
+        var o = JSON.parse(body);
 
         return o;
     }
