@@ -1,0 +1,30 @@
+{
+  "name": "ts-sync-request",
+  "version": "1.0.0",
+  "description": "TypeScript wrapper for sync-request library.",
+  "main": "dist/ts.validator.fluent.js",
+  "types": "dist/ts.validator.fluent.d.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/VeritasSoftware/ts.validator",
+  "keywords": [
+    "typescipt",
+    "wrapper",
+    "sync",
+    "request",
+    "library",
+    "sync-request",
+    "npm",
+    "package",
+    "ts-sync-request"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "sync-request": "^6.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  }
+}
