@@ -3,7 +3,7 @@
 
 ## Make synchronous http calls in TypeScript
 
-The package exports **SyncRequestClient** and **SyncRequestService** classes which have methods to make synchronous GET, POST calls.
+The package exports **SyncRequestClient** and **SyncRequestService** classes which have methods to make synchronous Http GET, POST calls from TypeScript.
 
 [**sync-request library on npm**](https://www.npmjs.com/package/sync-request)
 
@@ -51,7 +51,7 @@ import { SyncRequestClient } from 'ts-sync-request/dist'
 ```
     let url = "http://localhost:59039/api/Movies/validateEmailPost";
     let request = new Request();
-    request.Email = "email";
+    request.Email = "jdoe@xyz.com";
 
     var response = new SyncRequestClient()
                                 .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDc2OTg1MzgsIm5iZiI6MTU0NzY5NDIxOCwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InN0cmluZyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6InN0cmluZyIsIkRPQiI6IjEvMTcvMjAxOSIsImlzcyI6InlvdXIgYXBwIiwiYXVkIjoidGhlIGNsaWVudCBvZiB5b3VyIGFwcCJ9.qxFdcdAVKG2Idcsk_tftnkkyB2vsaQx5py1KSMy3fT4")
