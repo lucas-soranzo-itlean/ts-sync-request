@@ -58,7 +58,7 @@ import { SyncRequestClient } from 'ts-sync-request/dist'
                             .post<Request, Response>(url, request)
 ```
 
-The **addHeader** API is optional. You can call **addHeader** multiple times.
+The **addHeader** API is optional. You can call **addHeader** multiple times to add multiple headers.
 
 **Traditional API**:
 
@@ -76,7 +76,7 @@ import { SyncRequestService, SyncRequestHeader } from 'ts-sync-request/dist';
     let header = new SyncRequestHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDc2OTg1MzgsIm5iZiI6MTU0NzY5NDIxOCwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InN0cmluZyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6InN0cmluZyIsIkRPQiI6IjEvMTcvMjAxOSIsImlzcyI6InlvdXIgYXBwIiwiYXVkIjoidGhlIGNsaWVudCBvZiB5b3VyIGFwcCJ9.qxFdcdAVKG2Idcsk_tftnkkyB2vsaQx5py1KSMy3fT4");
      
     let headers: SyncRequestHeader[] = new Array<SyncRequestHeader>();
-     headers.push(header);     
+    headers.push(header);     
 
     let response = new SyncRequestService().get<Response>(url, headers);
 ```

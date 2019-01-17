@@ -13,6 +13,8 @@
     "synchronous",
     "http",
     "call",
+    "fluent",
+    "generic",
     "request",
     "library",
     "sync-request",
