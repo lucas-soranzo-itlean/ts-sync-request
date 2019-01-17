@@ -11,11 +11,12 @@ var SyncRequestService = /** @class */ (function () {
         var syncHeaders = null;
         var res = null;
         if (headers != null) {
-            var headersJson = JSON.parse(JSON.stringify(headers));
+            var tmp_1 = {};
+            headers.forEach(function (h) {
+                tmp_1[h.Key] = h.Value;
+            });
             syncHeaders = {
-                headers: {
-                    headersJson: headersJson
-                }
+                headers: tmp_1
             };
             res = sync_request_1.default('GET', url, syncHeaders);
         }
@@ -30,12 +31,13 @@ var SyncRequestService = /** @class */ (function () {
         var options = null;
         var res = null;
         if (headers != null) {
-            var headersJson = JSON.parse(JSON.stringify(headers));
+            var tmp_2 = {};
+            headers.forEach(function (h) {
+                tmp_2[h.Key] = h.Value;
+            });
             options = {
                 json: JSON.parse(JSON.stringify(req)),
-                headers: {
-                    headersJson: headersJson
-                }
+                headers: tmp_2
             };
             res = sync_request_1.default('POST', url, options);
         }

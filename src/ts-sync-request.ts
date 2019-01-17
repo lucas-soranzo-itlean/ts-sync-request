@@ -9,12 +9,14 @@ export class SyncRequestService
          
         if (headers != null)
         {
-            let headersJson = JSON.parse(JSON.stringify(headers));
+            let tmp: any = {};
+
+            headers.forEach(h => {
+                tmp[h.Key] = h.Value;
+            });
 
             syncHeaders = {
-                            headers: {
-                                headersJson
-                            }
+                            headers: tmp
                           };
 
             res = request('GET', url, syncHeaders);
@@ -36,13 +38,15 @@ export class SyncRequestService
         
         if (headers != null)
         {
-            let headersJson = JSON.parse(JSON.stringify(headers));
+            let tmp: any = {};
+
+            headers.forEach(h => {
+                tmp[h.Key] = h.Value;
+            });
 
             options = {
                             json: JSON.parse(JSON.stringify(req)),
-                            headers: {
-                                headersJson
-                            }
+                            headers: tmp
                       };
 
             res = request('POST', url, options);
