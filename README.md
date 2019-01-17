@@ -27,7 +27,7 @@ class Response
 
 **Usage**
 
-**Fluent API**
+### Fluent API
 
 You can use the fluent API by using the **SyncRequestClient** class as shown below.
 
@@ -60,7 +60,7 @@ import { SyncRequestClient } from 'ts-sync-request/dist'
 
 The **addHeader** API is optional. You can call **addHeader** multiple times to add multiple headers.
 
-**Traditional API**:
+### Traditional API
 
 You can use the traditional API by using the **SyncRequestService** class as shown below.
 
