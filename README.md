@@ -13,7 +13,7 @@ The package exports **SyncRequestClient** and **SyncRequestService** classes whi
 
 **TypeScript classes**
 
-```
+```typescript
 class Request
 {
     Email: string;
@@ -31,13 +31,13 @@ class Response
 
 You can use the fluent API by using the **SyncRequestClient** class as shown below.
 
-```
+```typescript
 import { SyncRequestClient } from 'ts-sync-request/dist'
 ```
 
 **GET**:
 
-```
+```typescript
     let email = "jdoe@xyz.com";
     let url = "http://localhost:59039/api/Movies/validateEmail/" + email;
 
@@ -48,7 +48,7 @@ import { SyncRequestClient } from 'ts-sync-request/dist'
 
 **POST**:
 
-```
+```typescript
     let url = "http://localhost:59039/api/Movies/validateEmailPost";
     let request = new Request();
     request.Email = "jdoe@xyz.com";
@@ -64,13 +64,13 @@ The **addHeader** API is optional. You can call **addHeader** multiple times to 
 
 You can use the traditional API by using the **SyncRequestService** class as shown below.
 
-```
+```typescript
 import { SyncRequestService, SyncRequestHeader } from 'ts-sync-request/dist';
 ```
 
 **GET**:
 
-```
+```typescript
     let email = "jdoe@xyz.com";
     let url = "http://localhost:59039/api/Movies/validateEmail/" + email;
 
@@ -85,7 +85,7 @@ import { SyncRequestService, SyncRequestHeader } from 'ts-sync-request/dist';
 
 **POST**:
 
-```
+```typescript
     let url = "http://localhost:59039/api/Movies/validateEmailPost";
     let request = new Request();
     request.Email = "jdoe@xyz.com";
