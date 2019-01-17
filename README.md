@@ -62,6 +62,8 @@ The **addHeader** API is optional. You can call **addHeader** multiple times to 
 
 **Traditional API**:
 
+You can use the traditional API by using the **SyncRequestService** class as shown below.
+
 ```
 import { SyncRequestService, SyncRequestHeader } from 'ts-sync-request/dist';
 ```
