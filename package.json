@@ -1,7 +1,7 @@
 {
   "name": "ts-sync-request",
-  "version": "1.2.0",
-  "description": "TypeScript strongly-typed wrapper for sync-request library.",
+  "version": "1.2.1",
+  "description": "TypeScript strongly-typed wrapper for sync-request library. Make synchronous http calls from TypeScript.",
   "main": "dist/ts-sync-request.js",
   "types": "dist/ts-sync-request.d.ts",
   "license": "MIT",
