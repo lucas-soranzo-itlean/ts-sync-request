@@ -28,7 +28,7 @@ class Response
 **Usage**
 
 ```
-import { SyncRequestService } from 'ts-sync-request/dist';
+import { SyncRequestService, SyncRequestHeader } from 'ts-sync-request/dist';
 ```
 
 **GET**:
@@ -37,7 +37,12 @@ import { SyncRequestService } from 'ts-sync-request/dist';
      let email = "jdoe@xyz.com";
      let url = "http://localhost:59039/api/Movies/validateEmail/" + email;
 
-     let response = new SyncRequestService().get<Response>(url);
+     // Add headers
+     let header = new SyncRequestHeader("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0");
+     let headers: SyncRequestHeader[] = new Array<SyncRequestHeader>();
+     headers.push(header);     
+
+     let response = new SyncRequestService().get<Response>(url, headers);
 ```
 
 **POST**:
@@ -47,5 +52,12 @@ import { SyncRequestService } from 'ts-sync-request/dist';
      let request = new Request();
      request.Email = "jdoe@xyz.com";
 
-     let response = new SyncRequestService().post<Request, Response>(url, request);
+     // Add headers
+     let header = new SyncRequestHeader("user-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0");
+     let headers: SyncRequestHeader[] = new Array<SyncRequestHeader>();
+     headers.push(header);     
+
+     let response = new SyncRequestService().post<Request, Response>(url, request, headers);
 ```
+ 
+The **headers** parameter is optional.

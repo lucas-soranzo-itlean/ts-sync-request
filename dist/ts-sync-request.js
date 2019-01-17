@@ -7,17 +7,44 @@ var sync_request_1 = __importDefault(require("sync-request"));
 var SyncRequestService = /** @class */ (function () {
     function SyncRequestService() {
     }
-    SyncRequestService.prototype.get = function (url) {
-        var res = sync_request_1.default('GET', url);
+    SyncRequestService.prototype.get = function (url, headers) {
+        var syncHeaders = null;
+        var res = null;
+        if (headers != null) {
+            var headersJson = JSON.parse(JSON.stringify(headers));
+            syncHeaders = {
+                headers: {
+                    headersJson: headersJson
+                }
+            };
+            res = sync_request_1.default('GET', url, syncHeaders);
+        }
+        else {
+            res = sync_request_1.default('GET', url);
+        }
         var body = res.getBody('utf8');
         var o = JSON.parse(body);
         return o;
     };
-    SyncRequestService.prototype.post = function (url, req) {
-        var options = {
-            json: JSON.parse(JSON.stringify(req))
-        };
-        var res = sync_request_1.default('POST', url, options);
+    SyncRequestService.prototype.post = function (url, req, headers) {
+        var options = null;
+        var res = null;
+        if (headers != null) {
+            var headersJson = JSON.parse(JSON.stringify(headers));
+            options = {
+                json: JSON.parse(JSON.stringify(req)),
+                headers: {
+                    headersJson: headersJson
+                }
+            };
+            res = sync_request_1.default('POST', url, options);
+        }
+        else {
+            options = {
+                json: JSON.parse(JSON.stringify(req))
+            };
+            res = sync_request_1.default('POST', url, options);
+        }
         var body = res.getBody('utf8');
         var o = JSON.parse(body);
         return o;
@@ -25,3 +52,13 @@ var SyncRequestService = /** @class */ (function () {
     return SyncRequestService;
 }());
 exports.SyncRequestService = SyncRequestService;
+var SyncRequestHeader = /** @class */ (function () {
+    function SyncRequestHeader(key, val) {
+        this.key = key;
+        this.val = val;
+        this.Key = this.key;
+        this.Value = this.val;
+    }
+    return SyncRequestHeader;
+}());
+exports.SyncRequestHeader = SyncRequestHeader;
