@@ -4,13 +4,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var sync_request_1 = __importDefault(require("sync-request"));
+var SyncRequestClient = /** @class */ (function () {
+    function SyncRequestClient() {
+        this.service = new SyncRequestService();
+        this.headers = new Array();
+    }
+    SyncRequestClient.prototype.addHeader = function (key, value) {
+        this.headers.push(new SyncRequestHeader(key, value));
+        return this;
+    };
+    SyncRequestClient.prototype.get = function (url) {
+        return this.service.get(url, this.headers);
+    };
+    SyncRequestClient.prototype.post = function (url, req) {
+        return this.service.post(url, req, this.headers);
+    };
+    return SyncRequestClient;
+}());
+exports.SyncRequestClient = SyncRequestClient;
 var SyncRequestService = /** @class */ (function () {
     function SyncRequestService() {
     }
     SyncRequestService.prototype.get = function (url, headers) {
         var syncHeaders = null;
         var res = null;
-        if (headers != null) {
+        if (headers != null && headers.length > 0) {
             var tmp_1 = {};
             headers.forEach(function (h) {
                 tmp_1[h.Key] = h.Value;
@@ -30,7 +48,7 @@ var SyncRequestService = /** @class */ (function () {
     SyncRequestService.prototype.post = function (url, req, headers) {
         var options = null;
         var res = null;
-        if (headers != null) {
+        if (headers != null && headers.length > 0) {
             var tmp_2 = {};
             headers.forEach(function (h) {
                 tmp_2[h.Key] = h.Value;

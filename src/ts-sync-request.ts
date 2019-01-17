@@ -1,5 +1,33 @@
 import request from 'sync-request';
 
+
+export interface ISyncRequestClient {
+    addHeader(key: string, value: string): ISyncRequestClient;
+    
+    get<TResponse>(url: string, headers?: SyncRequestHeader[]): TResponse;
+
+    post<TRequest, TResponse>(url: string, req: TRequest, headers?: SyncRequestHeader[]) : TResponse;
+}
+
+export class SyncRequestClient implements ISyncRequestClient {
+    private service: SyncRequestService = new SyncRequestService();
+    private headers: SyncRequestHeader[] = new Array<SyncRequestHeader>();
+
+    addHeader(key: string, value: string): ISyncRequestClient {
+        this.headers.push(new SyncRequestHeader(key, value));
+
+        return this;
+    }
+
+    get<TResponse>(url: string): TResponse {
+        return this.service.get(url, this.headers);
+    }
+
+    post<TRequest, TResponse>(url: string, req: TRequest) : TResponse {
+        return this.service.post(url, req, this.headers);
+    }
+}
+
 export class SyncRequestService
 {    
 
@@ -7,7 +35,7 @@ export class SyncRequestService
         let syncHeaders = null;
         let res = null;        
          
-        if (headers != null)
+        if (headers != null && headers.length > 0)
         {
             let tmp: any = {};
 
@@ -36,7 +64,7 @@ export class SyncRequestService
         let options = null;
         let res = null;        
         
-        if (headers != null)
+        if (headers != null && headers.length > 0)
         {
             let tmp: any = {};
 
