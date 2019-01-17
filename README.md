@@ -58,7 +58,7 @@ import { SyncRequestClient } from 'ts-sync-request/dist'
                             .post<Request, Response>(url, request)
 ```
 
-The **addHeader** API is optional.
+The **addHeader** API is optional. You can call **addHeader** multiple times.
 
 **Traditional API**:
 
