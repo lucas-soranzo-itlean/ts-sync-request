@@ -103,6 +103,8 @@ The **headers** parameter is optional.
 
 ## Options
 
+Below options are supported.
+
 | Option | Default | Description |
 | ---- | ---- | ---- |
 | followRedirects | true | can be explicitly set to false to prevent following redirects automatically. |
