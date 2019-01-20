@@ -1,7 +1,11 @@
 export interface ISyncRequestClient {
     addHeader(key: string, value: string): ISyncRequestClient;
-    get<TResponse>(url: string, headers?: SyncRequestHeader[]): TResponse;
-    post<TRequest, TResponse>(url: string, req: TRequest, headers?: SyncRequestHeader[]): TResponse;
+    addHeaders(headers: SyncRequestHeader[]): ISyncRequestClient;
+    get<TModel>(url: string): TModel;
+    post<TRequestModel, TResponseModel>(url: string, req: TRequestModel): TResponseModel;
+    create<TModel>(url: string, req: TModel): TModel;
+    put<TModel>(url: string, req: TModel): any;
+    delete<TModel>(url: string): TModel;
 }
 export declare class SyncRequestClient implements ISyncRequestClient {
     private options?;
@@ -9,12 +13,20 @@ export declare class SyncRequestClient implements ISyncRequestClient {
     private headers;
     constructor(options?: SyncRequestOptions | undefined);
     addHeader(key: string, value: string): ISyncRequestClient;
-    get<TResponse>(url: string): TResponse;
-    post<TRequest, TResponse>(url: string, req: TRequest): TResponse;
+    addHeaders(headers: SyncRequestHeader[]): ISyncRequestClient;
+    get<TModel>(url: string): TModel;
+    post<TRequestModel, TResponseModel>(url: string, req: TRequestModel): TResponseModel;
+    create<TModel>(url: string, req: TModel): TModel;
+    put<TModel>(url: string, req: TModel): void;
+    delete<TModel>(url: string): TModel;
 }
 export declare class SyncRequestService {
-    get<TResponse>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TResponse;
-    post<TRequest, TResponse>(url: string, req: TRequest, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TResponse;
+    get<TModel>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TModel;
+    post<TRequestModel, TResponseModel>(url: string, req: TRequestModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TResponseModel;
+    create<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TModel;
+    put<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): void;
+    delete<TModel>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TModel;
+    private addHeaders;
     private addOptions;
 }
 export declare class SyncRequestHeader {
