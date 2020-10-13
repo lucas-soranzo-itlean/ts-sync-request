@@ -4,7 +4,7 @@ export interface ISyncRequestClient {
     get<TModel>(url: string): TModel;
     post<TRequestModel, TResponseModel>(url: string, req: TRequestModel): TResponseModel;
     create<TModel>(url: string, req: TModel): TModel;
-    put<TModel>(url: string, req: TModel): any;
+    put<TRequestModel, TResponseModel>(url: string, req: TRequestModel): TResponseModel;
     delete<TModel>(url: string): TModel;
 }
 export declare class SyncRequestClient implements ISyncRequestClient {
@@ -17,14 +17,14 @@ export declare class SyncRequestClient implements ISyncRequestClient {
     get<TModel>(url: string): TModel;
     post<TRequestModel, TResponseModel>(url: string, req: TRequestModel): TResponseModel;
     create<TModel>(url: string, req: TModel): TModel;
-    put<TModel>(url: string, req: TModel): any;
+    put<TRequestModel, TResponseModel>(url: string, req: TRequestModel): TResponseModel;
     delete<TModel>(url: string): TModel;
 }
 export declare class SyncRequestService {
     get<TModel>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TModel;
     post<TRequestModel, TResponseModel>(url: string, req: TRequestModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TResponseModel;
     create<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TModel;
-    put<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): any;
+    put<TRequestModel, TResponseModel>(url: string, req: TRequestModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TResponseModel;
     delete<TModel>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TModel;
     private addHeaders;
     private addOptions;

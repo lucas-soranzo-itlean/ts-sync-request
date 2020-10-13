@@ -29,7 +29,7 @@ var SyncRequestClient = /** @class */ (function () {
         return this.service.create(url, req, this.headers, this.options);
     };
     SyncRequestClient.prototype.put = function (url, req) {
-        this.service.put(url, req, this.headers, this.options);
+        return this.service.put(url, req, this.headers, this.options);
     };
     SyncRequestClient.prototype.delete = function (url) {
         return this.service.delete(url, this.headers, this.options);
