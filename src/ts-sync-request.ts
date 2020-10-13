@@ -11,7 +11,7 @@ export interface ISyncRequestClient {
 
     create<TModel>(url: string, req: TModel) : TModel;
 
-    put<TModel>(url: string, req: TModel): any;
+    put<TModel>(url: string, req: TModel): TResponseModel;
 
     delete<TModel>(url: string) : TModel;
 }
@@ -48,7 +48,7 @@ export class SyncRequestClient implements ISyncRequestClient {
         return this.service.create(url, req, this.headers, this.options);
     }
 
-    put<TModel>(url: string, req: TModel) {
+    put<TModel>(url: string, req: TModel) : TResponseModel {
         this.service.put(url, req, this.headers, this.options);
     }
 
@@ -132,7 +132,7 @@ export class SyncRequestService
         return o;
     }    
 
-    put<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions) {
+    put<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions) : TResponseModel {
         let options: any = {};
 
         if (opts != null)
