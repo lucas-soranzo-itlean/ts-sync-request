@@ -140,11 +140,19 @@ export class SyncRequestService
             options = this.addOptions(opts);
         }
         
+        let res = null;     
+        
         this.addHeaders(options, headers);
 
         options["json"] = JSON.parse(JSON.stringify(req));
 
-        request('PUT', url, options);
+        res = request('PUT', url, options);
+        
+        var body = res.getBody('utf8');
+
+        var o = JSON.parse(body);
+
+        return o;        
     }
     
     delete<TModel>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions) : TModel {
