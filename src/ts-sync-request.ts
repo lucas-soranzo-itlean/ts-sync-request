@@ -4,21 +4,21 @@ export interface ISyncRequestClient {
     addHeader(key: string, value: string): ISyncRequestClient;
 
     addHeaders(headers: SyncRequestHeader[]): ISyncRequestClient;
-    
+
     get<TModel>(url: string): TModel;
 
     post<TRequestModel, TResponseModel>(url: string, req: TRequestModel) : TResponseModel;
 
     create<TModel>(url: string, req: TModel) : TModel;
 
-    put<TModel>(url: string, req: TModel): TResponseModel;
+    put<TModel>(url: string, req: TModel): any;
 
     delete<TModel>(url: string) : TModel;
 }
 
 export class SyncRequestClient implements ISyncRequestClient {
     private service: SyncRequestService = new SyncRequestService();
-    private headers: SyncRequestHeader[] = new Array<SyncRequestHeader>();    
+    private headers: SyncRequestHeader[] = new Array<SyncRequestHeader>();
 
     constructor(private options?: SyncRequestOptions) {
 
@@ -48,7 +48,7 @@ export class SyncRequestClient implements ISyncRequestClient {
         return this.service.create(url, req, this.headers, this.options);
     }
 
-    put<TModel>(url: string, req: TModel) : TResponseModel {
+    put<TModel>(url: string, req: TModel) : any {
         this.service.put(url, req, this.headers, this.options);
     }
 
@@ -58,17 +58,17 @@ export class SyncRequestClient implements ISyncRequestClient {
 }
 
 export class SyncRequestService
-{    
+{
 
     get<TModel>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions): TModel {
         let options: any = {};
-        let res = null;        
+        let res = null;
 
         if (opts != null)
         {
             options = this.addOptions(opts);
         }
-         
+
         if (headers != null && headers.length > 0)
         {
             this.addHeaders(options, headers);
@@ -83,7 +83,7 @@ export class SyncRequestService
 
         var o = JSON.parse(body);
 
-        return o;        
+        return o;
     }
 
     post<TRequestModel, TResponseModel>(url: string, req: TRequestModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions) : TResponseModel {
@@ -94,8 +94,8 @@ export class SyncRequestService
             options = this.addOptions(opts);
         }
 
-        let res = null;        
-        
+        let res = null;
+
         this.addHeaders(options, headers);
 
         options["json"] = JSON.parse(JSON.stringify(req));
@@ -117,9 +117,9 @@ export class SyncRequestService
             options = this.addOptions(opts);
         }
 
-        let res = null;        
-        
-        this.addHeaders(options, headers);        
+        let res = null;
+
+        this.addHeaders(options, headers);
 
         options["json"] = JSON.parse(JSON.stringify(req));
 
@@ -130,42 +130,42 @@ export class SyncRequestService
         var o = JSON.parse(body);
 
         return o;
-    }    
+    }
 
-    put<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions) : TResponseModel {
+    put<TModel>(url: string, req: TModel, headers?: SyncRequestHeader[], opts?: SyncRequestOptions) {
         let options: any = {};
 
         if (opts != null)
         {
             options = this.addOptions(opts);
         }
-        
-        let res = null;     
-        
+
+        let res = null;
+
         this.addHeaders(options, headers);
 
         options["json"] = JSON.parse(JSON.stringify(req));
 
         res = request('PUT', url, options);
-        
+
         var body = res.getBody('utf8');
 
         var o = JSON.parse(body);
 
-        return o;        
+        return o;
     }
-    
+
     delete<TModel>(url: string, headers?: SyncRequestHeader[], opts?: SyncRequestOptions) : TModel {
         let options: any = {};
-        let res = null;        
+        let res = null;
 
         if (opts != null)
         {
             options = this.addOptions(opts);
-        }   
-        
+        }
+
         this.addHeaders(options, headers);
-         
+
         res = request('DELETE', url, options);
 
         var body = res.getBody('utf8');
@@ -173,7 +173,7 @@ export class SyncRequestService
         var o = JSON.parse(body);
 
         return o;
-    }    
+    }
 
     private addHeaders(options: any, headers?: SyncRequestHeader[]) {
         if (headers != null && headers.length > 0) {
@@ -181,9 +181,9 @@ export class SyncRequestService
 
             headers.forEach(h => {
                 tmp[h.Key] = h.Value;
-            });            
-            options["headers"] = tmp;        
-        }        
+            });
+            options["headers"] = tmp;
+        }
     }
 
     private addOptions(options: SyncRequestOptions) : any {

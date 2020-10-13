@@ -88,9 +88,13 @@ var SyncRequestService = /** @class */ (function () {
         if (opts != null) {
             options = this.addOptions(opts);
         }
+        var res = null;
         this.addHeaders(options, headers);
         options["json"] = JSON.parse(JSON.stringify(req));
-        sync_request_1.default('PUT', url, options);
+        res = sync_request_1.default('PUT', url, options);
+        var body = res.getBody('utf8');
+        var o = JSON.parse(body);
+        return o;
     };
     SyncRequestService.prototype.delete = function (url, headers, opts) {
         var options = {};
